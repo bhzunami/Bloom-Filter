@@ -1,0 +1,8 @@
+Vorteile:
+- Speichert keine Werte - Kein grosser Speicher
+- schnell
+
+
+
+Nachteile
+- Speichert key nicht, kann den value nicht holen
