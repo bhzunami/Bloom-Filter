@@ -1,23 +1,31 @@
 package ch.fhnw.main;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+
+import ch.fhnw.bloomfilter.BloomFilter;
+
 public class Main {
 
-    public static void main(String[] args) {
-        System.out.println("Start App");
-
+    public static void main(String[] args) throws IOException {
+    	
+    	int n = 12;
+    	double p = 0.65;
+    	
+    	BloomFilter bf = new BloomFilter(n, p);
+    	
+    	File aWordFile = new File("src/main/resources/words.txt");
+    	BufferedReader br = new BufferedReader(new FileReader(aWordFile));
+    	
+    	String word;
+    	while((word = br.readLine()) != null){
+    		bf.hashString(word);
+    	}
+        
     }
     
-    /**
-     * Berechnet die optimale Anzahl k an Hashfunktionen.
-     * 
-     * @param inFilterSize eine geeignete Filtergrösse m.
-     * @param inNumberOfInsertedElements Anzahl n an zu erwartenden Elementen.
-     * @return optimale Anzahl k an Hashfunktionen
-     */
-    private int getOptimalNumberOfHashfunctions(int inFilterSize, int inNumberOfInsertedElements){
-    	int m = inFilterSize;
-    	int n = inNumberOfInsertedElements;
-    	return (int) ( m / n * Math.log(2) );
-    }
+    
 
 }
