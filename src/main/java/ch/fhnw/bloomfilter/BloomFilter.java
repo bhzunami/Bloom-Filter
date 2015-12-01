@@ -19,7 +19,7 @@ public class BloomFilter {
 
 	private double falsePositiveProbability;
 
-	private int optimalFilterSize;
+	private int optimalFilterSize; // m
 	
 	private List<HashFunction> hashFunctions;
 
@@ -87,10 +87,24 @@ public class BloomFilter {
 	 * Hashes a word.
 	 * @param inWord the word to hash.
 	 */
-	public void hashString(String inWord){
+	public void cacheString(String inWord){
 		for(HashFunction hf : hashFunctions){
 			HashCode hashCode = hf.hashString(inWord);
-			System.out.println(hashCode);
+			int index = (int) Math.sqrt(Math.pow(hashCode.asLong() % optimalFilterSize, 2));
+			bitArray[index] = 1;
 		}
+	}
+	
+	//TODO: DRY This method is similar to chacheString. Make one method! 
+	public boolean checkIfContains(String word) {
+	    boolean found = true;
+	    for(HashFunction hf : hashFunctions){
+            HashCode hashCode = hf.hashString(word);
+            int index = (int) Math.sqrt(Math.pow(hashCode.asLong() % optimalFilterSize, 2));
+            if(bitArray[index] == 0) {
+                found = false;
+            }
+        }
+	    return found;
 	}
 }
