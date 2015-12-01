@@ -8,6 +8,8 @@ import java.io.IOException;
 import ch.fhnw.bloomfilter.BloomFilter;
 
 public class Main {
+    
+    private static BufferedReader br;
 
     public static void main(String[] args) throws IOException {
     	
@@ -17,12 +19,11 @@ public class Main {
     	BloomFilter bf = new BloomFilter(n, p);
     	
     	File aWordFile = new File("src/main/resources/words.txt");
-    	BufferedReader br = new BufferedReader(new FileReader(aWordFile));
+    	br = new BufferedReader(new FileReader(aWordFile));
     	
     	String word;
     	while((word = br.readLine()) != null){
     		bf.cacheString(word);
-//    		System.out.println(bf.checkIfContains(word));
     	}
     	
     	System.out.println(bf.checkIfContains("abaft"));
@@ -33,9 +34,7 @@ public class Main {
     	System.out.println(bf.checkIfContains("abart"));
     	System.out.println(bf.checkIfContains("abalt"));
     	System.out.println(bf.checkIfContains("abaqt"));
-//    	System.out.println(bf.checkIfContains("asdf"));
-//    	System.out.println(bf.checkIfContains("aaaaaaaaa2"));
-//        
+      
     }
     
     

@@ -15,13 +15,13 @@ public class BloomFilter {
 	 */
 	private byte[] bitArray;
 
-	private int numberOfInsertedElements;
+	public int numberOfInsertedElements;
 
-	private double falsePositiveProbability;
+	public double falsePositiveProbability;
 
-	private int optimalFilterSize; // m
+	public int optimalFilterSize; // m
 	
-	private List<HashFunction> hashFunctions;
+	public List<HashFunction> hashFunctions;
 
 	/**
 	 * Constructor.
